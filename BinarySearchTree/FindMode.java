@@ -16,4 +16,27 @@ public int count = 0;
 public int max = 0;
 
 public int [] findMode(TreeNode root){
+  helper(root);
+  int [] res = new int[list.size()];
+  for(int i = 0; i < list.size(); i++){
+    res[i] = list.get(i);
+  }
+  return res;
+}
   
+  public void helper(TreeNode root){
+    if(root == null) return;
+    helper(root.left);
+    if(root.val == prev) count++;
+    else if(root.val != prev) count = 1;
+    if(count > max){
+      list.clear();
+      list.add(root.val);
+      max = count;
+    }else if(count == max){
+      list.add(root.val);
+    }
+    prev = root.val;
+    helper(root.right);
+  }
+}
