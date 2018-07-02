@@ -10,3 +10,32 @@ If depth d is 1 that means there is no depth d-1 at all,
 then create a tree node with value v as the new root of the whole original tree, 
 and the original tree is the new root's left subtree.
 */
+
+class Solution{
+  public TreeNode addOneRow(TreeNode root, int v, int d){
+    if(d == 1){
+      TreeNode newRoot = new TreeNode(v);
+      newRoot.left = root;
+      return newRoot;
+    }
+    helper(root, 1, v, d);
+    return root;
+  }
+  
+  public void helper(TreeNode root, int depth, int v, int d){
+    if(root == null) return;
+    if(depth == d - 1){
+      TreeNode newLeft = new TreeNode(v);
+      TreeNode newRight = new TreeNode(v);
+      TreeNode temp = root.left;
+      root.left = newLeft;
+      newLeft.left = temp;
+      temp = root.right;
+      root.right = newRight;
+      newRight.right = temp;
+      return;
+    }
+    helper(root.left, depth + 1, v, d);
+    helper(root.right, depth + 1, v, d);
+  }
+}
