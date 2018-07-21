@@ -6,5 +6,5 @@ unsigned char isP(long n){
     temp += i%10;
     i /= 10;
   }
-  return (i == temp || i == temp/10);
+  return (i == temp || i == temp/10)?1:0;
 }
