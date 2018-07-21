@@ -1,4 +1,5 @@
 unsigned char isP(long n){
+  if(n < 0 || (n != 0 && n %10 == 0)) return 0;
   long i, temp;
   i = n;
   temp = 0;
